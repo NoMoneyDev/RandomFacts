@@ -1,4 +1,4 @@
-from Text_Scrollbar import *
+from text_scrollbar import *
 from fact_giver import *
 
 class Fact_UI(tk.Frame):
