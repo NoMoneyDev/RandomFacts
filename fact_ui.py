@@ -3,15 +3,24 @@ from fact_giver import *
 
 class Fact_UI(tk.Frame):
 
-    def __init__(self):
-        self.root = tk.Tk()
+    def __init__(self, root):
+        super().__init__(root)
+        self.root = root
+        self.grid_config()
         self.init_components()
         self.install_components()
         self.root.mainloop()
 
+    def grid_config(self):
+        self.root.rowconfigure(0, weight=1, uniform=1)
+        self.root.rowconfigure(1, weight=5, uniform=1)
+        self.root.rowconfigure(2, weight=1, uniform=1)
+
+        self.root.columnconfigure(0, weight=1, uniform=1)
+
     def init_components(self):
         self.root.title('Random Facts')
-        self.root.geometry('500x200')
+        self.root.geometry('600x300')
         self.factLabel = tk.Label(self.root, text='Random Facts', font=('Arial', 15))
 
         self.factDisplay = Text_ScrollBar(self.root)
@@ -21,9 +30,9 @@ class Fact_UI(tk.Frame):
         self.fact_giver = Fact_giver()
 
     def install_components(self):
-        self.factLabel.pack(side=tk.TOP, padx=5, pady=5)
-        self.factDisplay.pack(side=tk.LEFT, padx=5, pady=5, fill=tk.BOTH, expand=True)
-        self.factButton.pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+        self.factLabel.grid(row=0, column=0, padx=5, pady=5, sticky=tk.NSEW)
+        self.factDisplay.grid(row=1, column=0, padx=5, pady=5, sticky=tk.NSEW)
+        self.factButton.grid(row=2, column=0, padx=5, pady=5, sticky=tk.NSEW)
 
     def set_text(self, txt):
         self.factDisplay.text = txt
@@ -35,4 +44,5 @@ class Fact_UI(tk.Frame):
 
 
 if __name__ == '__main__':
-    UI = Fact_UI()
+    root = tk.Tk()
+    UI = Fact_UI(root)

@@ -1,3 +1,4 @@
 from fact_ui import *
 
-UI = Fact_UI()
+root = tk.Tk()
+UI = Fact_UI(root)
